@@ -1,17 +1,8 @@
 /**
- * Copyright © 2016 WetAQB&DreamCityAdminGroup All right reserved.
- * Welcome to DreamCity Server Address:dreamcity.top:19132
- * Created by WetAQB(Administrator) on 2017/2/4.
- * |||    ||    ||||                           ||        ||||||||     |||||||
- * |||   |||    |||               ||         ||  |      |||     ||   |||    |||
- * |||   |||    ||     ||||||  ||||||||     ||   ||      ||  ||||   |||      ||
- * ||  |||||   ||   |||   ||  ||||        ||| |||||     ||||||||   |        ||
- * ||  || ||  ||    ||  ||      |        |||||||| ||    ||     ||| ||      ||
- * ||||   ||||     ||    ||    ||  ||  |||       |||  ||||   |||   ||||||||
- * ||     |||      |||||||     |||||  |||       |||| ||||||||      |||||    |
- * ||||
+ * Developers:WetABQ,Shanwer
+ * S_Chat Project
  */
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,7 +31,6 @@ public class ServerThread extends Thread {
                 // 信息的格式：(login||logout||say),收发人,信息体
                 //不断地读取客户端发过来的信息
                 String msg = user.getBr().readLine();
-                //System.out.println(msg);
                 Boolean b = false;
                 String[] str = msg.split(" ");
                 switch (str[0]) {
@@ -49,8 +39,7 @@ public class ServerThread extends Thread {
                         remove(this.user);
                         stop();
                         break;
-                    case "say":
-                        // System.out.print("Code: 003");
+                    case "say": ;
                         b = true;
                         try {
                             if (str[1] != null && str[2] != null) {
@@ -64,7 +53,6 @@ public class ServerThread extends Thread {
                         }
                         break;
                     case "lock":
-                        //System.out.print("Code: 004");
                         try {
                             b = true;
                             this.lockuser = str[1];
@@ -74,7 +62,6 @@ public class ServerThread extends Thread {
                         }
                         break;
                     case "unlock":
-                        //System.out.print("Code: 005");
                         b = true;
                         if (this.lockuser != null) {
                             this.lockuser = null;
@@ -84,7 +71,6 @@ public class ServerThread extends Thread {
                         }
                         break;
                     case "":
-                        //System.out.print("Code: 006");
                         b = true;
                         sendToClient(user.getName(), "请不要乱发空命令");
                         break;

@@ -1,17 +1,7 @@
 /**
- * Copyright © 2016 WetAQB&DreamCityAdminGroup All right reserved.
- * Welcome to DreamCity Server Address:dreamcity.top:19132
- * Created by WetAQB(Administrator) on 2017/2/4.
- * |||    ||    ||||                           ||        ||||||||     |||||||
- * |||   |||    |||               ||         ||  |      |||     ||   |||    |||
- * |||   |||    ||     ||||||  ||||||||     ||   ||      ||  ||||   |||      ||
- * ||  |||||   ||   |||   ||  ||||        ||| |||||     ||||||||   |        ||
- * ||  || ||  ||    ||  ||      |        |||||||| ||    ||     ||| ||      ||
- * ||||   ||||     ||    ||    ||  ||  |||       |||  ||||   |||   ||||||||
- * ||     |||      |||||||     |||||  |||       |||| ||||||||      |||||    |
- * ||||
+ * Developers:WetABQ,Shanwer
+ * S_Chat Project
  */
-import Utils.getMAC;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -93,7 +83,8 @@ public class User {
         this.br = new BufferedReader(new InputStreamReader(
                 socket.getInputStream()));
         this.pw = new PrintWriter(socket.getOutputStream());
-        this.Mac = getMAC.getMacAddress(socket.getInetAddress().getHostAddress());
+        //this.Mac = getMac().getMacAddress(socket.getInetAddress().getHostAddress());
+        this.Mac = getMac();
     }
 
     @Override

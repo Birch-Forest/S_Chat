@@ -1,4 +1,7 @@
-import Utils.getMAC;
+/**
+ * Developers:WetABQ,Shanwer
+ * S_Chat Project
+ */
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,19 +9,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-/**
- * Copyright © 2016 WetAQB&DreamCityAdminGroup All right reserved.
- * Welcome to DreamCity Server Address:dreamcity.top:19132
- * Created by WetAQB(Administrator) on 2017/2/4.
- * |||    ||    ||||                           ||        ||||||||     |||||||
- * |||   |||    |||               ||         ||  |      |||     ||   |||    |||
- * |||   |||    ||     ||||||  ||||||||     ||   ||      ||  ||||   |||      ||
- * ||  |||||   ||   |||   ||  ||||        ||| |||||     ||||||||   |        ||
- * ||  || ||  ||    ||  ||      |        |||||||| ||    ||     ||| ||      ||
- * ||||   ||||     ||    ||    ||  ||  |||       |||  ||||   |||   ||||||||
- * ||     |||      |||||||     |||||  |||       |||| ||||||||      |||||    |
- * ||||
- */
 public class UClient {
     private String ip;
     private Socket socket;
@@ -64,7 +54,6 @@ public class UClient {
         this.br = new BufferedReader(new InputStreamReader(
                 socket.getInputStream()));
         this.pw = new PrintWriter(socket.getOutputStream());
-        this.Mac = getMAC.getMacAddress(address);
     }
 
     @Override

@@ -1,15 +1,6 @@
 /**
- * Copyright © 2016 WetAQB&DreamCityAdminGroup All right reserved.
- * Welcome to DreamCity Server Address:dreamcity.top:19132
- * Created by WetAQB(Administrator) on 2017/2/4.
- * |||    ||    ||||                           ||        ||||||||     |||||||
- * |||   |||    |||               ||         ||  |      |||     ||   |||    |||
- * |||   |||    ||     ||||||  ||||||||     ||   ||      ||  ||||   |||      ||
- * ||  |||||   ||   |||   ||  ||||        ||| |||||     ||||||||   |        ||
- * ||  || ||  ||    ||  ||      |        |||||||| ||    ||     ||| ||      ||
- * ||||   ||||     ||    ||    ||  ||  |||       |||  ||||   |||   ||||||||
- * ||     |||      |||||||     |||||  |||       |||| ||||||||      |||||    |
- * ||||
+ * Developers:WetABQ,Shanwer
+ * S_Chat Project
  */
 
 import java.math.BigDecimal;
@@ -20,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 //服务器类
 public class Server {
     /*
@@ -30,15 +20,9 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         long starttime = System.nanoTime();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.print("数据库错误 001 - 无法找到数据库驱动\n");
-            e.printStackTrace();
-        }
         String url = "jdbc:mysql://localhost:3306/schat?useUnicode=true&characterEncoding=gbk";
-        String username = "root";
-        String password = "root";
+        String username = "Test";
+        String password = "test";
         String driver = "com.mysql.jdbc.Driver";
         try {
             Class.forName(driver);
@@ -54,20 +38,18 @@ public class Server {
                     UserList.put(resultSet.getString("user"), map);
                 }
             } else {
-                System.out.print("数据库错误 002 - 连接S_Chat用户数据库失败!\n");
+                System.out.print("无法连接至MySQL数据库！请打开后重新运行！\n");
             }
             mysql.close();
             statement.close();
         } catch (ClassNotFoundException e) {
-            System.out.print("数据库错误 001 - 无法找到数据库驱动\n");
+            System.out.print("找不到数据库驱动！\n");
             e.printStackTrace();
         } catch (SQLException e) {
+            System.out.print("MySQL数据库----未知异常:\n");
             e.printStackTrace();
+            System.out.print("MySQL数据库状态:" + e.getSQLState()+ "\n");
         }
-
-        Map<String, String> map = new HashMap<>();
-        map.put("password", "2333");
-        UserList.put("WetABQ", map);
         List<UClient> list2 = new ArrayList<>();
         // 创建绑定到特定端口的服务器套接字
         @SuppressWarnings("resource")
@@ -80,8 +62,6 @@ public class Server {
         // 循环监听客户端连接
         while (true) {
             Socket socket = serverSocket.accept();
-            // 每接受一个线程，就随机生成一个一个新用户
-            //User user = new User("user" + Math.round(Math.random() * 100),socket);
             System.out.println(socket.getInetAddress().getHostAddress() + "正在尝试登录。。。");
             UClient UClient = new UClient(socket.getInetAddress().getHostAddress(), socket);
             list2.add(UClient);
