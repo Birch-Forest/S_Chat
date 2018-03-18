@@ -30,8 +30,15 @@ public class Client {
 
     public static void main(String[] args) {
         try {
+            String address = args[0];
             System.out.print("正在尝试连接S_Chat服务端\n");
-            String address = "localhost";
+            if (args[0] == null) {
+                System.out.println("命令行实参为空，默认使用本地服务器");
+                System.out.println("请输入java Client %address来选择服务器");
+                address = "localhost";
+            } else {
+                System.out.println("你连接的服务器是:" + args[0]);
+            }
             int port = 9999;
             Socket socket = new Socket(address, port);
             //开启一个线程接收信息，并解析
@@ -89,33 +96,34 @@ public class Client {
                         System.out.println("say 用法:say 用户名 信息--使用它找人聊天");
                         System.out.println("lock 用法:lock 用户名--使用它锁定用户");
                         System.out.println("exit 用法:exit--使用它依依不舍地退出该聊天程序 %>_<%");
-                    break;
+                        System.out.println("logout 用法:logout--使用它退出当前的账号");
+                        break;
                 }
                 out.println(s);
                 //out.write(s+"\n");
                 out.flush();
             }
+
         } catch (Exception e) {
             System.out.println("服务器异常\n");
         }
     }
 
-    /**
-     * 获取本机的IP
-     *
-     * @return Ip地址
-     */
-    public static String getLocalHostIP() {
-        String ip;
-        try {
-            /**返回本地主机。*/
-            InetAddress addr = InetAddress.getLocalHost();
-            /**返回 IP 地址字符串（以文本表现形式）*/
-            ip = addr.getHostAddress();
-        } catch (Exception ex) {
-            ip = "";
+        /**
+         * 获取本机的IP
+         *
+         * @return Ip地址
+         */
+        public static String getLocalHostIP() {
+            String ip;
+            try {
+                /**返回本地主机。*/
+                InetAddress addr = InetAddress.getLocalHost();
+                /**返回 IP 地址字符串（以文本表现形式）*/
+                ip = addr.getHostAddress();
+            } catch (Exception ex) {
+                ip = "";
+            }
+            return ip;
         }
-
-        return ip;
     }
-}
